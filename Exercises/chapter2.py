@@ -90,4 +90,81 @@ def delete(self, value):
 #difference between regular and doubly linked list?
 
 #6
+#done in the pushdown_stack file
+
+#7 
+Give the contents of the stack after the operation EAS*Y**QUE***ST***I*ON**
+'''
+[E]
+[E,A]
+[E,A,S]
+[E,A]
+[E,A,Y]
+[E,A]
+[E]
+[E,Q]
+[E,Q,U]
+[E,Q,U,E]
+[E,Q,U]
+[E,Q]
+[E,Q,S]
+[E,Q,S,T]
+[E,Q,S]
+[E,Q]
+[E]
+[E,I]
+[E]
+[E,O]
+[E,O,N]
+[E,O]
+[E]
+'''
+
+#8 
+Give the contents of the queue after the operation EAS*Y**QUE***ST***I*ON**
+
+'''
+[E]
+[E,A]
+[E,A,S]
+[A,S]
+[A,S,Y]
+[S,Y]
+[Y]
+[Y,Q]
+[Y,Q,U]
+[Y,Q,U,E]
+[Q,U,E]
+[U,E]
+[U,E,S]
+[U,E,S,T]
+[E,S,T]
+[S,T]
+[T]
+[T,I]
+[I]
+[I,O]
+[I,O,N]
+[O,N]
+[N]
+'''
+
+# 9
+#?
+
+#10
+#
+#To "put" into a queue, we can use the linked list operation prepend:
+def prepend(self,value):
+    new_node = Node(value)
+    new_node.next = self.head
+    self.head = new_node
+#To "get" from a queue, we need to remove the last value
+def get(self):
+  current = self.head
+  while True:
+    if current.next.next == None:
+      current.next = None
+      return
+    current = current.next
 
