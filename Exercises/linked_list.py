@@ -124,7 +124,7 @@ class linkedList:
       prev = current
       current = next_node
     self.head = prev
-  
+
 class testLinkedList(unittest.TestCase):
   def setUp(self):
     self.mylist = linkedList()
