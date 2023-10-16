@@ -1,3 +1,4 @@
+import pytest
 # 1. Implement the classical version of Euclids algorithm as described in the text.
 def euclid(u, v):
   if u > v:
@@ -12,6 +13,12 @@ def euclid(u, v):
     return (euclid(s, b % s))
 
 
+def test_euclid():
+  assert euclid(2, 2) == 2
+  assert euclid(5, 10) == 5
+  assert euclid(6, 8) == 2
+  assert euclid(7, 16) == 1
+  
 # 2. Check what values your pascal system computes for u mod v
 # when u and v are not necessarily positive.
 # 7 % 4 = 3
@@ -24,7 +31,11 @@ def euclid(u, v):
 def frac(x, y):
   gcf = euclid(x, y)
   return ((int(x / gcf), int(y / gcf)))
-
+def test_frac():
+  assert frac(6, 8) == (3, 4)
+  assert frac(7, 16) == (7, 16)
+  assert frac(8, 12) == (2, 3)
+  assert frac(9, 9) == (1, 1)
 
 #4. Write a function convert: integer that reads a decimal number one # character(digit) at a time, terminated by a blank, and returns the  # value of that number.
 def convert(n):
@@ -35,6 +46,7 @@ def convert(n):
     n = n // 10
     counter += 1
   return (sum)
+
 
 
 #5. Write a function procedure binary (x: integer) that prints out the inary equivalent of a number.
@@ -50,6 +62,11 @@ def bin(x):
   s = "1" + s
   return (s)
 
+def test_bin():
+  assert bin(2) == '10'
+  assert bin(3) == '11'
+  assert bin(12) == '1100'
+  assert bin (30) == '11110'
 
 #6. Give all the values that u and v take on when gcd is invoked with the intial call gcd(12345, 56789)
 def gcf(u, v):
@@ -75,10 +92,15 @@ def n8(u, v, w):
   gcf1 = euclid(u, v)
   gcf2 = euclid(gcf1, w)
   return (gcf2)
+def test_n8():
+  assert n8(2, 3, 4) == 1
+  assert n8(5, 10, 15) == 5
+  assert n8(6, 8, 12) == 2
+  assert n8(7, 16, 24) == 1
 
 
 #9 Find the largest pair of numbers representable as integers in your pascal system whose greatest common divisor is 1
-# lets say that the largest number was 2*10000
+# lets say that the largest number was 2**10000
 
 
 def lpn():
