@@ -47,7 +47,11 @@ def convert(n):
     counter += 1
   return (sum)
 
-
+def test_convert():
+  assert convert(10) == 2
+  assert convert(11) == 3
+  assert convert(1100) == 12
+  assert convert(11110) == 30
 
 #5. Write a function procedure binary (x: integer) that prints out the inary equivalent of a number.
 
