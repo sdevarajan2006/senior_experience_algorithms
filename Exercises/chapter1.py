@@ -138,3 +138,6 @@ S = B MOD S
 B = T
 RETURN
   '''
+
+if __name__ == "__main__":
+  pytest.main()
