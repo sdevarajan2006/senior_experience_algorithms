@@ -124,6 +124,24 @@ class linkedList:
       prev = current
       current = next_node
     self.head = prev
+  def len(self):
+    count = 0
+    current = self.head
+    while current:
+      count += 1
+      current = current.next
+    return count
+  def value_at(self, n):
+    if n < 0:
+      return None  # Index out of range
+    current = self.head
+    index = 0
+    while current:
+      if index == n:
+        return current.value
+      current = current.next
+      index += 1
+    return None
 
 class testLinkedList(unittest.TestCase):
   def setUp(self):
