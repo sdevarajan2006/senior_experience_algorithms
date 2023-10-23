@@ -1,14 +1,22 @@
+import pytest
 #1
 def n1(i,j):
     arr = []
-    for x in range i:
-        for y in range j:
-            ls = []
-            if euclid(i,j) == 1:
+    for x in range(i):
+        ls = []
+        for y in range(j):
+            if euclid(x,y) == 1:
                 ls.append(True)
             else:
                 ls.append(False)
-            arr.append(ls)
+        arr.append(ls)
+    return(arr)
+
+def test_n1():
+  assert n1(3,4) == [[False, False, False, False], [False, True, True, True], [False, True, False, True]]
+  assert n1(1,1) == [[False]]
+  assert n1(9,2) == [[False, False], [False, True], [False, True], [False, True], [False, True], [False, True], [False, True], [False, True], [False, True]]
+
 #2
 def movenexttofront(t,link):
   place = link.index(t)
