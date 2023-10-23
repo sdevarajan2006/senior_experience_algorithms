@@ -58,13 +58,19 @@ def exchange(t, u, link):
       current = current.next
 #4 
 def josephus(n, m):
-    people = list(range(1, n + 1))
-    result = []
-    index = 0
-    while people:
-        index = (index + m - 1) % len(people)
-        result.append(people.pop(index))
-    return result[0]
+  people = list(range(1, n + 1))
+  result = []
+  index = 0
+  while len(people) > 1:
+      index = (index + m - 1) % len(people)
+      result.append(people.pop(index))
+  return people[0]
+
+def test_josephus():
+  assert josephus(10,3) == 4
+  assert josephus(13, 9) == 11
+  assert josephus(19,7) == 16
+
 
 #5
 def insert(self, place, val):
