@@ -101,7 +101,6 @@ def delete(self, value):
         return
       current = current.next
 
-#difference between regular and doubly linked list?
 
 #6
 #done in the pushdown_stack file
