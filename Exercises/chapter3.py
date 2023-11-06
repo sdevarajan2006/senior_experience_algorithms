@@ -66,3 +66,30 @@
 [E]
 [E]
 '''
+
+#10
+#Level order traversal
+from collections import deque
+def lot(ex, start, end):
+  und = set(ex.keys())
+  ds = deque()
+  ps = set()
+  ds.append(und.pop())
+  p = {}
+  while (len(ds) > 0):
+    v = ds[0]
+    edges = ex[v]
+    for i in edges:
+      if (not (i in ps) or (i in ds)):
+        ds.append(i)
+        if not (i in p):
+          p[i] = v
+    ps.add(v)
+    ds.remove(v)
+  e = end
+  ans = deque([e])
+  while (e != 0):
+    ans.appendleft(p[e])
+    e = p[e]
+  return(list(ans))
+
