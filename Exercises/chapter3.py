@@ -66,7 +66,20 @@
 [E]
 [E]
 '''
+#Post order traversal
+def postorderh(ad,node):
+  connects = ad[node]
+  for c in connects:
+    if not(c == parent_dict[node]):
+      parent_dict[c] = node
+      postorderh(ad,c)
+  ls.append(node)
 
+def postorder(ad, node):
+  parent_dict = {ad.keys(): None}
+  ls = []
+  postorderh(ad,node)
+  return(ls)
 #10
 #Level order traversal
 from collections import deque
