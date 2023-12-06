@@ -17,46 +17,64 @@ def print_tree(tree, indent=0):
 
 #Write a recursive program to compute the external path length of a binary tree
 
-def dfs_recursive(n, time, timedict, ad, depth):
-    timedict[n][0] = time
+def dfs_recursive(n, time, parent_dict, ad):
+    parent_dict[n] = None  
     time += 1
-    
-    # Check if the node is a leaf node
-    if len(ad[n]) == 1:
-        # Increment the depth for external nodes
-        depth[0] += time
-    
-    # Check if the node has two children (internal node)
-    if len(ad[n]) == 2 and n != 0:
-        time += 1
-    
     for i in ad[n]:
-        if timedict[i][0] == 0:
-            time = dfs_recursive(i, time, timedict, ad, depth)
-    
-    timedict[n][1] = time
+        if parent_dict[i] is None:
+            parent_dict[i] = n  
+            time = dfs_recursive(i, time, parent_dict, ad)
+    time += 1
     return time
 
-def td(ad):
-    timedict = {}
+def dfs(n, ad):
+    leaves = []
+    half_leaves = []
+    parent_dict = {}
+    time = dfs_recursive(n, 1, parent_dict, ad)
     for i in ad.keys():
-        timedict[i] = [0, 0]
-    return timedict
+        if parent_dict.count(i) == 0:
+            leaves.append(i)
+        elif parent_dict.count(i) == 1:
+            half_leaves.append(i)
+    return(leaves, half_leaves, parent_dict)
 
-def external_path_length(n, ad):
-    timedict = td(ad)
-    depth = [0]  # To accumulate the external path length
-    time = dfs_recursive(n, 1, timedict, ad, depth)
-    print("External Path Length:", depth[0])
+def epll(leaves,pd):
+    count = 0
+    for i in leaves:
+        subcount = 0
+        current = i
+        while i != 0:
+            current = pd[i]
+            subcount += 1
+        subcount += 1
+        subcount *= 2
+        count += subcount
+    return count
+def eplhl(half_leaves,pd):
+    count = 0
+    for i in half_leaves:
+        subcount = 0
+        current = i
+        while i != 0:
+            current = pd[i]
+            subcount += 1
+        subcount += 1
+        count += subcount
+    return count
 
-ex = {
-  0: [1, 2],
-  1: [0, 3],
-  2: [0, 4, 5],
-  3: [1],
-  4: [2, 6],
-  5: [2],
-  6: [4]
-}
+def epl(ad):
+    leaves, half_leaves, parent_dict = dfs(0, ad)
+    half_leaf_count =  eplhl(half_leaves,pd)
+    leaf_count = epll(leaves,pd)
+    return(half_leaf_count + leaf_count)
 
-external_path_length(0, ex)
+
+
+   
+
+
+        
+
+
+
