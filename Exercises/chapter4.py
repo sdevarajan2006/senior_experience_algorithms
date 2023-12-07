@@ -18,10 +18,9 @@ def print_tree(tree, indent=0):
 #Write a recursive program to compute the external path length of a binary tree
 
 def dfs_recursive(n, time, parent_dict, ad):
-    parent_dict[n] = None  
     time += 1
     for i in ad[n]:
-        if parent_dict[i] is None:
+        if (i not in parent_dict.keys()):
             parent_dict[i] = n  
             time = dfs_recursive(i, time, parent_dict, ad)
     time += 1
@@ -30,12 +29,12 @@ def dfs_recursive(n, time, parent_dict, ad):
 def dfs(n, ad):
     leaves = []
     half_leaves = []
-    parent_dict = {}
+    parent_dict = {0: None}
     time = dfs_recursive(n, 1, parent_dict, ad)
     for i in ad.keys():
-        if parent_dict.count(i) == 0:
+        if list(parent_dict.values()).count(i) == 0:
             leaves.append(i)
-        elif parent_dict.count(i) == 1:
+        elif list(parent_dict.values()).count(i) == 1:
             half_leaves.append(i)
     return(leaves, half_leaves, parent_dict)
 
@@ -44,8 +43,8 @@ def epll(leaves,pd):
     for i in leaves:
         subcount = 0
         current = i
-        while i != 0:
-            current = pd[i]
+        while current != 0:
+            current = pd[current]
             subcount += 1
         subcount += 1
         subcount *= 2
@@ -56,8 +55,8 @@ def eplhl(half_leaves,pd):
     for i in half_leaves:
         subcount = 0
         current = i
-        while i != 0:
-            current = pd[i]
+        while current != 0:
+            current = pd[current]
             subcount += 1
         subcount += 1
         count += subcount
@@ -65,10 +64,9 @@ def eplhl(half_leaves,pd):
 
 def epl(ad):
     leaves, half_leaves, parent_dict = dfs(0, ad)
-    half_leaf_count =  eplhl(half_leaves,pd)
-    leaf_count = epll(leaves,pd)
-    return(half_leaf_count + leaf_count)
-
+    half_leaf_count =  eplhl(half_leaves,parent_dict)
+    leaf_count = epll(leaves,parent_dict)
+    print(half_leaf_count + leaf_count)
 
 
    
