@@ -1,3 +1,4 @@
+import pytest
 #1 Write a recursive program to draw a binary tree so that the root appears at the center of the page, 
 #the root of the left subtree is at the center of the left hlaf of the page, etc. 
 
@@ -68,7 +69,25 @@ def epl(ad):
     leaf_count = epll(leaves,parent_dict)
     print(half_leaf_count + leaf_count)
 
-
+ex1 = {
+  0: [1, 2],
+  1: [0, 3],
+  2: [0, 4, 5],
+  3: [1],
+  4: [2, 6],
+  5: [2],
+  6: [4]
+}
+ex2 = {0: [1],
+       1: [0,2],
+       2: [1,3,4],
+       3: [2],
+       4: [2,5],
+       5: [4,6],
+       6: [5]}
+def test_n2():
+    assert epl(ex1) == 25
+    assert epl(ex2) == 32
    
 
 
