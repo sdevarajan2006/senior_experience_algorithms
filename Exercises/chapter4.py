@@ -88,6 +88,56 @@ ex2 = {0: [1],
 def test_n2():
     assert epl(ex1) == 25
     assert epl(ex2) == 32
+
+
+#write a program to compute the path length of a tree represented by a binary tree 
+
+#outline
+#the binary tree has to have a left node and right node, rather than just being represented by an adjacency dict 
+#so that it is clear which is the child and which is the sibling. 
+#For example if a node had a child but no sibling it's adjacency dict would be [child,none]
+#similarly, if a node had s sibling but no child it's adjacency dict would be [none, child]
+
+ex = {1: [2, None],
+      2: [None,3],
+      3: [4, None],
+      4: [7,5],
+      5: [8,6],
+      6: [None, None],
+      7: [None, None],
+      8: [9, None],
+      9: [None, 10],
+      10: [None,None]}
+
+#The leaf nodes are the ones that are either [None, None] or [None, n], meaning if the first
+# number in the adjacency dict is "none"
+def find_leaf_nodes(adj):
+    leaf_nodes = []
+    for i in adj.keys():
+        child = adj[i][0]
+        if child == None:
+            leaf_nodes.append(i)
+    return(leaf_nodes)
+
+def recursive_path_length(n, ad,sum):
+    if n == 0:
+        return(sum)
+    #elif n is in the child of someone: 
+        #sum += 1
+        #recursive_path_length(parent, ad, sum)
+    #else( n is the sibling of someone):
+       # recursive_path_length(sibling, ad, sum)
+    
+def external_path_length(ad):
+    leaf_nodes = find_leaf_nodes(ad)
+    total = 0
+    for i in leaf_nodes:
+         
+#we can use this to recursively find the path length back up to the parent(1) and calculate the EPL
+#For each leaf node, we check if its the child of anything. 
+#If it isn't we check who it is the sibling of
+#keep going sibling until a parent is found 
+# †he three lines above will be recursive 
    
 
 
