@@ -1,6 +1,6 @@
 import pytest
 #1 Write a recursive program to draw a binary tree so that the root appears at the center of the page, 
-#the root of the left subtree is at the center of the left hlaf of the page, etc. 
+#the root of the left subtree is at the center of the left half of the page, etc. 
 
 def generate_binary_tree(depth, length, x=0, y=0):
     if depth == 0:
@@ -16,7 +16,7 @@ def print_tree(tree, indent=0):
     for child_key, child_node in tree["children"].items():
         print_tree(child_node, indent + 4)
 
-#Write a recursive program to compute the external path length of a binary tree
+#2 Write a recursive program to compute the external path length of a binary tree
 
 def dfs_recursive(n, time, parent_dict, ad):
     time += 1
@@ -90,27 +90,7 @@ def test_n2():
     assert epl(ex2) == 32
 
 
-#write a program to compute the path length of a tree represented by a binary tree 
-
-#outline
-#the binary tree has to have a left node and right node, rather than just being represented by an adjacency dict 
-#so that it is clear which is the child and which is the sibling. 
-#For example if a node had a child but no sibling it's adjacency dict would be [child,none]
-#similarly, if a node had s sibling but no child it's adjacency dict would be [none, child]
-
-ex = {1: [2, None],
-      2: [None,3],
-      3: [4, None],
-      4: [7,5],
-      5: [8,6],
-      6: [None, None],
-      7: [None, None],
-      8: [9, None],
-      9: [None, 10],
-      10: [None,None]}
-
-#The leaf nodes are the ones that are either [None, None] or [None, n], meaning if the first
-# number in the adjacency dict is "none"
+#3 Write a program to compute the path length of a tree represented by a binary tree 
 def find_leaf_nodes(adj):
     leaf_nodes = []
     for i in adj.keys():
@@ -122,22 +102,66 @@ def find_leaf_nodes(adj):
 def recursive_path_length(n, ad,sum):
     if n == 0:
         return(sum)
-    #elif n is in the child of someone: 
-        #sum += 1
-        #recursive_path_length(parent, ad, sum)
-    #else( n is the sibling of someone):
-       # recursive_path_length(sibling, ad, sum)
+    children = [values[0] for values in ad.values()]
+    siblings = [values[1] for values in ad.values()]
+    if n in children:
+        sum += 1
+        place = children.index(n)
+    elif n in siblings:
+        place = siblings.index(n)
+    ssum = recursive_path_length(list(ad.keys())[place], ad, 0)
+    sum += ssum
+    return(sum)
+        
     
 def external_path_length(ad):
     leaf_nodes = find_leaf_nodes(ad)
     total = 0
     for i in leaf_nodes:
-         
-#we can use this to recursively find the path length back up to the parent(1) and calculate the EPL
-#For each leaf node, we check if its the child of anything. 
-#If it isn't we check who it is the sibling of
-#keep going sibling until a parent is found 
-# †he three lines above will be recursive 
+        s = recursive_path_length(i, ad, 0)
+        total += s
+    return(total)  
+ex_dict1 = {0: [1,None],
+           1: [4,2],
+           2: [None, 3],
+           3: [8, None],
+           4: [5, None],
+           5: [6,7],
+           6: [None, None],
+           7: [None, None],
+           8: [10,9],
+           9: [None, None],
+           10: [None,None]}   
+ex_dict2 = {0: [1,None],
+            1: [10,2],
+            2: [3,None],
+            3: [9,4],
+            4: [6,5],
+            5: [None, None],
+            6: [7,None],
+            7: [8,None],
+            8: [None,None],
+            9: [None,None],
+            10: [None,None]}
+
+ex_dict3 = {0: [1,None],
+            1: [2,None],
+            2: [3,None],
+            3: [None,4],
+            4: [None,5],
+            5: [None,6],
+            6: [None,7],
+            7: [8,None],
+            8: [None,9],
+            9: [None,10],
+            10: [None,11],
+            11: [None,None]}
+
+
+def test_n3():
+    assert external_path_length(ex_dict1) == 13
+    assert external_path_length(ex_dict2) == 12
+    assert external_path_length(ex_dict3) == 28
    
 
 
