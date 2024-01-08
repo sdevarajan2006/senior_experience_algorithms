@@ -163,6 +163,21 @@ def test_n3():
     assert external_path_length(ex_dict2) == 12
     assert external_path_length(ex_dict3) == 28
    
+#4 Give the coordinates produced when the recursive tree-drawing procedure given in the text is applied to the binary tree in figure 4.2
+'''
+P - (0,0)
+L - (100,-200)
+E - (150, -300)
+R - (175, -350)
+T - (162.5, -375)
+E - (187.5, -375)
+E - (181.25, -387.5)
+M - (-100,-200)
+S - (-150, -300)
+A - (-175, -350)
+A - (-125, 350)
+'''
+
 
 
         
