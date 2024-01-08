@@ -178,6 +178,24 @@ A - (-175, -350)
 A - (-125, 350)
 '''
 
+#5
+#Mechanically remove the recursion from the Fibonacci program given in the text to get a to get a nonrecursive implementation
+def fibonacci(n):
+    fib = [0, 1]
+    if n == 1:
+        return 1
+    for i in range(2, n+1):
+        fib.append(fib[i-1] + fib[i-2])
+    return fib[n]
+
+def test_n5():
+    assert fibonacci(10) == 55
+    assert fibonacci(20) == 6765
+    assert fibonacci(2) == 1
+
+
+#6
+#Mechanically remove the recursion from the recursive inorder tree traversal algorithm to get a nonrecursive implementation
 
 
         
