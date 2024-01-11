@@ -196,8 +196,36 @@ def test_n5():
 
 #6
 #Mechanically remove the recursion from the recursive inorder tree traversal algorithm to get a nonrecursive implementation
+ex = {0:[1,2],
+      1:[3,4],
+      2:[5,6],
+      3:[None,None],
+      4:[None,None],
+      5:[None,None],
+      6:[None,None],}
 
-
+def inorder_nonrecursive(tree):
+  processed = [False for node in ex]
+  current_node = 0
+  while True: 
+    while False in processed: 
+      if ex[current_node][0] != None and not(processed[ex[current_node][0]]):
+        current_node = ex[current_node][0]
+        break
+      if ex[current_node][0] != None and not(processed[ex[current_node][0]]):
+          print('processing node ' + str(current_node))
+          processed[current_node] = True 
+          for n in ex.keys():
+            if current_node in ex[n]:
+                current_node = n
+                break
+      if ex[current_node][1] != None and not(processed[ex[current_node][1]]):
+        current_node = ex[current_node][1]
+        break
+    if False not in processed:
+       return('Done')
+  
+inorder_nonrecursive(ex)
         
 
 
