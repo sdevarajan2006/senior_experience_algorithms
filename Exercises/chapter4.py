@@ -309,5 +309,29 @@ def test_postorder_nonrecursive():
   assert postorder_nonrecursive(tree2) == [4, 6, 5, 3, 2, 1, 0]
   assert postorder_nonrecursive(tree3) == [3, 5, 7, 8, 6, 4, 1, 2, 0]
 
+#8 Write a recursive 'divide and conquer' program to draw an approximation to the line segment connecting two points (x1,y1) and (x2,y2) by
+#drawing points using only integer coordinates. 
 
+point_1 = (0,0)
+point_2 = (5,4)
 
+def dnc_recursive(p1,p2):
+  p1x = p1[0]
+  p1y = p1[1]
+  p2x = p2[0]
+  p2y = p2[1]
+  midpointx = round (((p1x + p2x) / 2) + 0.01)
+  midpointy = round (((p1y + p2y) / 2) + 0.01)
+  if midpointx == p1x or midpointx == p1y or midpointy == p1y or midpointy == p2y:
+    return
+  dnc_recursive(p1,(midpointx,midpointy))
+  dnc_recursive((midpointx,midpointy), p2)
+  lst.append(midpointx,midpointy)
+  return(midpointx,midpointy)
+
+def dnc(p1,p2):
+  lst = []
+  dnc_recursive(p1,p2)
+  return(lst)
+
+dnc(point_1,point_2)
