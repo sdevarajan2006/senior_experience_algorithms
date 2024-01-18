@@ -249,7 +249,65 @@ def test_n6():
   assert inorder_nonrecursive(tree1) == [3, 1, 4, 0, 5, 2, 6]
   assert inorder_nonrecursive(tree2) == [4, 3, 5, 6, 2, 1, 0]
   assert inorder_nonrecursive(tree3) == [3, 1, 4, 0, 5, 2, 6]
+
+
+#7 Mechanically remove the recursion from the recursive postorder tree traversal algorithm to get a nonrecursive implementation
         
+tree1 = {0:[1,2],
+      1:[3,4],
+      2:[5,6],
+      3:[None,None],
+      4:[None,None],
+      5:[None,None],
+      6:[None,None],}
+tree2 = {0:[1,None],
+      1:[2, None],
+      2:[3,None],
+      3:[4,5],
+      4:[None,None],
+      5:[None,6],
+      6:[None,None],}
+tree3 = {0:[1,2],
+      1:[3,4],
+      2:[None,None],
+      3:[None,None],
+      4:[5,6],
+      5:[None,None],
+      6:[7,8],
+      7:[None,None],
+      8:[None,None]}
+def postorder_nonrecursive(ex):
+  processed = [False for node in ex]
+  current_node = 0
+  order = []
+  while True: 
+    while False in processed: 
+      if ex[current_node][0] != None and not(processed[ex[current_node][0]]):
+        current_node = ex[current_node][0]
+        break
+      if ex[current_node][1] != None and not(processed[ex[current_node][1]]):
+         current_node = ex[current_node][1]
+         break
+      else:
+         order.append(current_node)
+         processed[current_node] = True 
+         for n in ex.keys():
+           if current_node in ex[n]:
+             current_node = n
+             break
+    if False not in processed:
+      return(order)
+
+print(postorder_nonrecursive(tree1))
+print(postorder_nonrecursive(tree2))
+print(postorder_nonrecursive(tree3))
+
+
+def test_postorder_nonrecursive():
+
+  assert postorder_nonrecursive(tree1) == [3, 4, 1, 5, 6, 2, 0]
+  assert postorder_nonrecursive(tree2) == [4, 6, 5, 3, 2, 1, 0]
+  assert postorder_nonrecursive(tree3) == [3, 5, 7, 8, 6, 4, 1, 2, 0]
 
 
 
