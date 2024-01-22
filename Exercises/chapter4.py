@@ -312,26 +312,25 @@ def test_postorder_nonrecursive():
 #8 Write a recursive 'divide and conquer' program to draw an approximation to the line segment connecting two points (x1,y1) and (x2,y2) by
 #drawing points using only integer coordinates. 
 
-point_1 = (0,0)
-point_2 = (5,4)
+def dnc_recursive(p1, p2, lst):
+    p1x, p1y = p1
+    p2x, p2y = p2
 
-def dnc_recursive(p1,p2):
-  p1x = p1[0]
-  p1y = p1[1]
-  p2x = p2[0]
-  p2y = p2[1]
-  midpointx = round (((p1x + p2x) / 2) + 0.01)
-  midpointy = round (((p1y + p2y) / 2) + 0.01)
-  if midpointx == p1x or midpointx == p1y or midpointy == p1y or midpointy == p2y:
-    return
-  dnc_recursive(p1,(midpointx,midpointy))
-  dnc_recursive((midpointx,midpointy), p2)
-  lst.append(midpointx,midpointy)
-  return(midpointx,midpointy)
+    midpointx = round((p1x + p2x) / 2)
+    midpointy = round((p1y + p2y) / 2)
+    if midpointx == p1x or midpointx == p1y or midpointy == p1y or midpointy == p2y:
+        return
+    lst.append((midpointx, midpointy))
 
-def dnc(p1,p2):
-  lst = []
-  dnc_recursive(p1,p2)
-  return(lst)
+    dnc_recursive(p1, (midpointx, midpointy), lst)
+    dnc_recursive((midpointx, midpointy), p2, lst)
 
-dnc(point_1,point_2)
+def dnc(p1, p2):
+    lst = [p1, p2]
+    dnc_recursive(p1, p2, lst)
+    return sorted(lst, key=lambda point: point[0])
+
+def test_dnc():
+    assert dnc((0,0),(5,4)) == [(0, 0), (1, 1), (2, 2), (4, 3), (5, 4)]
+    assert dnc((4,4),(5,5)) == [(4, 4), (5, 5)]
+    assert dnc((5,5),(15,10)) == [(5, 5), (8, 6), (9, 7), (10, 8), (12, 9), (15, 10)]
