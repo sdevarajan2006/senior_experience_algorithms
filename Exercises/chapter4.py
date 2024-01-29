@@ -336,20 +336,32 @@ def test_dnc():
     assert dnc((5,5),(15,10)) == [(5, 5), (8, 6), (9, 7), (10, 8), (12, 9), (15, 10)]
 
 
+
 #9 write a recursive program for solving the josephus problem
 def josephus_recursive(n,k,lst):
-    #check if list only has one thing left:
-    if len(lst) == 1
+    if len(lst) == 1:
         return (lst[0])
-    rem = lst[n]
+    rem = lst[n-1]
     lst.remove(rem)
     new_index = n + k - 1
     if new_index > len(lst):
         new_index = new_index % len(lst)
-    josephus (new_index, k, lst)
+    r = josephus_recursive(new_index, k, lst)
+    return r
     # find the new index of what needs to be removed through n+k and adjusting for making a new list
     #josephus(newn, k lst)
+def josephus(n,k):
+    l = list(range(1, n + 1))
+    return(josephus_recursive(k,k,l))
+def test_josephus():
+    assert josephus(5,2) == 3
+    assert josephus(7,3) == 4
+    assert josephus(14,2) == 13
+    
 
 
 
-def josephus(n, k):
+
+
+    
+
