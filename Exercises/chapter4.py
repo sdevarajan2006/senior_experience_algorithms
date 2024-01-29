@@ -357,6 +357,27 @@ def test_josephus():
     assert josephus(5,2) == 3
     assert josephus(7,3) == 4
     assert josephus(14,2) == 13
+
+#10 Write a recursive implementation of Euclid's algorithm
+def euclid(u, v):
+  if u > v:
+    b = u
+    s = v
+  else:
+    b = v
+    s = u
+  if ((b % s) == 0):
+    return (s)
+  else:
+    return (euclid(s, b % s))
+
+
+def test_euclid():
+  assert euclid(2, 2) == 2
+  assert euclid(5, 10) == 5
+  assert euclid(6, 8) == 2
+  assert euclid(7, 16) == 1
+  
     
 
 
