@@ -26,7 +26,24 @@ O(2) takes double the amount of time as O(1) in a worst case scenario. However, 
 on the size of the input 
 '''
 
-# 5 
+# 5 Solve the recurrence
+'''
+C(N) = C(N/2) + N^2 
+suppose that n = 2^(x)
+C(2^(x)) = C(2^(x-1)) + (2^(x))^2
+         = C(2^(x-2)) + (2^(x-1))^2
+         = 1 + 4 + 16 + 64 + ... + (2^(x))^2
+
+We can calculate this sum as a geometric series 
+Using the formula (a(1-r^(n)))/(1-r), we can plug in our values and find that the sum is (1(1-4^(x+1)))/(1-4) = (4^(x+1)-1)/3
+Now we solve in terms of N, where X = log(2)(N)
+So, out final sum is (4^(log(2)(n) + 1) - 1)/3
+'''
+
+#6 For what values of N is 10N lgN > 2N^2
+'''
+never
+'''
 
 
 
