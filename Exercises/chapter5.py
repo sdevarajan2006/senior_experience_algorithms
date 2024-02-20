@@ -45,5 +45,44 @@ So, out final sum is (4^(log(2)(n) + 1) - 1)/3
 never
 '''
 
+#7 Write a program to compute the exact value of C(n) in formula 2, s discussed in Chaoter 5. Compare the results to log(n)
+def c(n):
+    sum = 0
+    if n == 0:
+        return(1)
+    sum += (n - 1 + float(1/n))
+    for k in range(1,n+1):
+        sum += c(k -1) + c(n - k)
+    return sum
+for i in range(1,101):
+   print(c(i), math.log(i))
 
+#c(n) grows at a much more rapid pace than log(n). C(n) is exponential, while log(n) is logarithmic growth. 
+
+#8 Prove that the precise solution to formula 2 is lg(N) + O(1)
+
+'''
+Formula 2: c(n) = c(n/2) + 1, where c(1) = 0
+
+The number of times that the formula will need to be recured is lg(n) because we are dividing by 2 everytime. 
+ex. c(8) = c(4) + 1 = c(2) + 1 + 1 = c(1) + 1 + 1 + 1
+
+Since it always goes down to c(1) which is 0, we are counting the number of 1's that add together to arrive at our answer. 
+This ends up being lg(n)
+
+'''
+
+#9 Write a recursive program to compute the largest integer less than log(2)(N). 
+def n9(n,exp):
+    if 2**(exp) > n:
+        return(exp - 1)
+    return(n9(n, exp + 1))
+
+def test_n9():
+         assert n9(17,0) == 4
+         assert n9(9,0) == 3
+         assert n9(84,0) == 6
+
+#10 Write an iterative program for the problem in the previous exercise . Then write a program that does the computation using Pascal library subroutines. 
+#If possible on your computer system. compare the performance of these three programs. 
 
