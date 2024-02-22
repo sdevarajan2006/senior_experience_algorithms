@@ -83,6 +83,20 @@ def test_n9():
          assert n9(9,0) == 3
          assert n9(84,0) == 6
 
-#10 Write an iterative program for the problem in the previous exercise . Then write a program that does the computation using Pascal library subroutines. 
-#If possible on your computer system. compare the performance of these three programs. 
+#10 Write an iterative program for the problem in the previous exercise. Then write a program that does the computation using Pascal library subroutines. 
+#If possible on your computer system. compare the performance of these three programs. (come back to the pascal stuff)
+
+def n10(n):
+   exp = 0
+   while True: 
+      if 2**(exp) > n:
+         return(exp - 1)
+      exp += 1
+
+def test_n10():
+         assert n10(17) == 4
+         assert n10(9) == 3
+         assert n10(84) == 6
+
+
 
