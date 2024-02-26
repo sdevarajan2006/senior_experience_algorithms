@@ -42,6 +42,7 @@ def erat(n):
 
 #4
 def erat_optimized(n):
+    printed = []
     dict = {key: True for key in range(1, n+1)}
     dict[1] = False
     for i in range(2, n + 1):
@@ -51,6 +52,35 @@ def erat_optimized(n):
                 dict[i * j] = False
                 j += 1
         for key in range(i*2, 0, -1):
-            if dict[key]:
-                print(key)
-                break
+            if key <= len(dict):
+                if dict[key] and not(key in printed):
+                    print(key)
+                    printed.append(key)
+                    break
+
+
+#5 
+
+def preorder_recursive(tree, node,processed):
+    processed.append(node)
+    children = tree[node]
+    for i in children:
+        preorder_recursive(tree,i,processed)
+
+def preorder(tree):
+    node = 0
+    processed = []
+    preorder_recursive(tree,node,processed)
+    return(processed)
+
+def preorder_nonr(tree):
+    todo = []
+    processed = []
+    todo.append(0)
+    while todo:
+        node = todo.pop()
+        processed.append(node)
+        children = tree[node]
+        while children:
+            todo.append(children.pop())
+    return(processed)
