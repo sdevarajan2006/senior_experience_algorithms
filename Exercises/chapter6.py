@@ -105,8 +105,13 @@ def preorder_recursive(tree, node, processed):
 #8 design an experiment to test which of the linked list or array implementation of a pushdown stack is more efficient in your programming environment
 
 #9 Which is more efficient, the recursive or nonrecursive method for drawing a ruler in chapter 5?
+# The recursive implementation is more efficient because it doesn't need to go into casework in order to determine the length of the mark that should 
+# be placed depending on what we are marking for the ruler. 
 
-# The 
+# 10 Exactly how many extraneous stack pushes are used by the nonrecursive implementation given in chapter 5 when traversing a complete tree 
+# of 2^n - 1 nodes in preorder. 
+
+
 
 
 
