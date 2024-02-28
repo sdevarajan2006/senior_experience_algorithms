@@ -59,7 +59,8 @@ def erat_optimized(n):
                     break
 
 
-#5 
+#5 Test the assertion in the text that removing recursion from the preorder tree traversal algorithm from chapter 5 (with procedure calls to the
+# stack operation) makes the program slower. 
 
 def preorder_recursive(tree, node,processed):
     processed.append(node)
@@ -84,3 +85,31 @@ def preorder_nonr(tree):
         while children:
             todo.append(children.pop())
     return(processed)
+
+#for 100 nodes, the nonrecursive implementation runs slower than the recursive implementation 
+
+
+
+#6 Test the assertion in the text that removing recursion from the preorder tree traversal algorithm from chapter 5 (and implementing 
+# stack operations inline) makes the program slower. 
+
+def preorder_recursive(tree, node, processed):
+    processed.append(node)
+    children = tree[node]
+    for i in children:
+        preorder_recursive(tree,i,processed)
+    return(processed)
+
+#7 
+
+#8 design an experiment to test which of the linked list or array implementation of a pushdown stack is more efficient in your programming environment
+
+#9 Which is more efficient, the recursive or nonrecursive method for drawing a ruler in chapter 5?
+
+# The 
+
+
+
+
+
+
