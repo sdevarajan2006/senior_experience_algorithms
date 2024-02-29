@@ -103,8 +103,30 @@ def preorder_recursive(tree, node, processed):
 #7 
 
 #8 design an experiment to test which of the linked list or array implementation of a pushdown stack is more efficient in your programming environment
-#If we are doing a pushdown stack, the best thing to do would be to add 100 values and pop them all off and see which one runs faster 
 
+
+from ll import linkedList
+from ll import Node
+
+
+def llps():
+    linked_list_pushdown_stack = linkedList()
+    for i in range(10000):
+        linked_list_pushdown_stack.append(i)
+    for i in range(9999,-1,-1):
+        linked_list_pushdown_stack.pop(i)
+    return(linked_list_pushdown_stack.display())
+
+
+
+
+def aps():
+    array_pushdown_stack = []
+    for i in range(10000):
+        array_pushdown_stack.append(i)
+    for i in range (9999,1,-1):
+        array_pushdown_stack.pop()
+    return(array_pushdown_stack)
 
 
 
