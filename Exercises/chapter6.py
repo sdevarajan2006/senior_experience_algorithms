@@ -117,7 +117,8 @@ def llps():
         linked_list_pushdown_stack.pop(i)
     return(linked_list_pushdown_stack.display())
 
-
+print(llps())
+#This took 12 seconds to run
 
 
 def aps():
@@ -127,6 +128,11 @@ def aps():
     for i in range (9999,1,-1):
         array_pushdown_stack.pop()
     return(array_pushdown_stack)
+#this took 54 ms
+
+#The reason that the array was more efficient was because I made my own linked list class, as there is not linked list object in python. 
+#My linked list class implementation seems to be significantly slower than the array implementation of a pushdown stack. 
+
 
 
 
