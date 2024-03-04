@@ -100,7 +100,8 @@ def preorder_recursive(tree, node, processed):
         preorder_recursive(tree,i,processed)
     return(processed)
 
-#7 
+#7 Examine the assembly-language program produced by the pascal compiler in your local programming environment for the recursive preorder tree traersal algorithm
+# in chapter 5 
 
 #8 design an experiment to test which of the linked list or array implementation of a pushdown stack is more efficient in your programming environment
 
@@ -142,6 +143,8 @@ def aps():
 
 # 10 Exactly how many extraneous stack pushes are used by the nonrecursive implementation given in chapter 5 when traversing a complete tree 
 # of 2^n - 1 nodes in preorder. 
+
+# 0- Each node in the entire tree is pushed onto the stack once and is pulled once 
 
 
 
