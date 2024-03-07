@@ -66,3 +66,63 @@ def bubble_sort(arr):
 
 #for a randomly generated array of length 10,000, selection sort took 12s, insertion sort took 25s, and bubble sort took 33s to run
 
+#5 Give a good reason why it might be inconvenient to use a sentinel key for insertion sort (aside from the one that comes up in the implementation o
+# shellsort)
+
+#If you insert the smallest value in the front of the sorted array to avoid checking if index j < 0, if the array is long and in reversed order,
+# it will take quite a long time to find the smallest value. 
+
+#6 How many comparisons are used by Shallsort to 7-sort, then 3-sort the keys EASYQUESTION
+'''
+E A S Y Q U E S T I O N
+1 2 3 4 5 6 7 8 9 1 1 1
+                  0 1 2
+----------- 7 sort -----------------------
+Comparison 1: E(1) and S(8) -----> NO SWAP
+Comparison 2: A(2) and T(9) -----> NO SWAP
+Comparison 3: S(3) and I(10) ----> SWAP
+Comparison 4: Y(4) and O(11) ----> SWAP
+Comparison 5: Q(5) and N(12) ----> SWAP
+---------- results -----------------------
+E A I O N U E S T S Y Q
+1 2 3 4 5 6 7 8 9 1 1 1
+                  0 1 2
+----------- 3 sort -----------------------
+Comparison 6: E(1) and O(4) -----> NO SWAP
+Comparison 7: A(2) and N(5) -----> NO SWAP
+Comparison 8: I(3) and U(6) -----> NO SWAP
+Comparison 9: O(4) and E(7) -----> SWAP
+Comparison 10: N(5) and S(8) ----> NO SWAP
+Comparison 11: U(6) and T(9) ----> SWAP
+Comparison 12: O(7) and S(10) ---> NO SWAP
+Comparison 13: S(8) and Y(11) ---> NO SWAP
+Comparison 14: U(9) and Q(12) ---> SWAP
+---------- results -----------------------
+E A I E N T O S Q S Y U
+1 2 3 4 5 6 7 8 9 1 1 1
+                  0 1 2
+----------- 1 sort -----------------------
+11 more comparisons of adjacent keys
+---------- results -----------------------
+A E E I N O S T Q S U Y
+1 2 3 4 5 6 7 8 9 1 1 1
+                  0 1 2
+------------------------------------------
+It is still not fully sorted, but this took 25 comparisons
+'''
+
+#7 Give an example to show why 8,4,2,1 would not be a good way to finish off a shell sort increment sequence 
+
+'''
+L A L A U A U A V A V A Z A Z A Z
+
+sorted:
+A L A L A U A U A V A V A Z A Z Z 
+'''
+
+#8 Is selection sort stable? What about insertion sort and bubble sort?
+#selection sort is stable because we always need to make the same number of comparisons every time
+# Insertion sort is not stable because its complexity depends on how sorted the list already is
+# Bubble sort is not stable because the # of swaps depends on how sorted the list already is (if it is already sorted it only needs one pass)
+
+#9 
