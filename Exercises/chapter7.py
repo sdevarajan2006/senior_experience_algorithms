@@ -1,3 +1,4 @@
+import pytest 
 #1 Give a sequence of "compare exchange" operations for sorting four records 
 
 #Bubble sort 
@@ -125,4 +126,96 @@ A L A L A U A U A V A V A Z A Z Z
 # Insertion sort is not stable because its complexity depends on how sorted the list already is
 # Bubble sort is not stable because the # of swaps depends on how sorted the list already is (if it is already sorted it only needs one pass)
 
-#9 
+#9 Give a specialized version of distribution counting for sorting files where elements have only one of two values (either x or y)
+
+def sort_with_2_vals(l):
+  val1 = l[0]
+  nv1 = l.count(val1)
+  for i in l:
+    if i != val1:
+      val2 = i
+      break
+    val2 = val1
+  nv2 = len(l) - nv1
+  if val1 < val2:
+    return(([val1] * nv1) + ([val2] * nv2))
+  return(([val2] * nv2) + ([val1] * nv1))
+
+def test_sort_with_2_vals():
+  assert sort_with_2_vals([0,0]) == [0, 0]
+  assert sort_with_2_vals([0,2,0,2,2,2,0,2,0,0]) == [0, 0, 0, 0, 0, 2, 2, 2, 2, 2]
+  assert sort_with_2_vals([2,3,2,3,2,2,3,3,2,2,2,3,3,3,2,2,3,3,2,3,2,2]) == [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+
+#10 Experiment with different increment sequences for shell sort: find one that runs faster than the one given for a random file of 1000 elements.
+
+import random
+
+
+def shell_sort(list_given):
+  l = list_given
+  n = len(l)
+  gap = n // 2
+  while gap > 0:
+    for i in range(gap, n):
+      temp = l[i]
+      j = i
+      while j >= gap and l[j - gap] > temp:
+        l[j] = l[j - gap]
+        j -= gap
+      l[j] = temp
+    gap //= 2
+  return l
+
+
+def shell_sort_knuth(list_given):
+  l = list_given
+  n = len(l)
+  gap = 1
+  while gap < n / 3:
+    gap = 3 * gap + 1
+  while gap > 0:
+    for i in range(gap, n):
+      temp = l[i]
+      j = i
+      while j >= gap and l[j - gap] > temp:
+        l[j] = l[j - gap]
+        j -= gap
+      l[j] = temp
+    gap //= 3  
+  return l
+
+def shell_sort_sedgewick(list_given):
+  l = list_given
+  n = len(l)
+  k = 0
+  gap = 1
+  while gap < n:
+      if k % 2 == 0:
+          gap = 9 * (4 ** k) - 9 * (2 ** k) + 1
+      else:
+          gap = 2 ** (k + 2) * (2 ** (k + 2) - 3) + 1
+      k += 1
+  while gap > 0:
+      for i in range(gap, n):
+          temp = l[i]
+          j = i
+          while j >= gap and l[j - gap] > temp:
+              l[j] = l[j - gap]
+              j -= gap
+          l[j] = temp
+      k -= 1
+      if k % 2 == 0:
+          gap = 9 * (4 ** k) - 9 * (2 ** k) + 1
+      else:
+          gap = 2 ** (k + 2) * (2 ** (k + 2) - 3) + 1
+  return l
+
+
+
+random_numbers = [random.randint(1, 1000) for _ in range(1000)]
+
+#shell_sort(random_numbers)
+#shell_sort_knuth(random_numbers)
+#shell_sort_sedgewick(random_numbers)
+
+#knuth seems to run the fastest 
