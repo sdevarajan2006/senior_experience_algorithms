@@ -67,3 +67,30 @@ print(shortest_cutoff)
 def test_quicksort():
 
 #shortest_cutoff ranges from 10-20 
+
+
+#non recursive quicksort
+
+def quicksortr(l, cutoff=10):
+  stack = [(0, len(l) - 1)]
+  while stack:
+      start, end = stack.pop()
+      if end - start <= cutoff:
+          l[start:end + 1] = insertion_sort(l[start:end + 1])
+      else:
+          pivot = l[start + (end - start) // 2]
+          left, right = start, end
+          while left <= right:
+              while l[left] < pivot:
+                  left += 1
+              while l[right] > pivot:
+                  right -= 1
+              if left <= right:
+                  l[left], l[right] = l[right], l[left]
+                  left += 1
+                  right -= 1
+          if start < right:
+              stack.append((start, right))
+          if left < end:
+              stack.append((left, end))
+  return l
