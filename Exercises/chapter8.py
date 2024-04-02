@@ -64,14 +64,13 @@ for cutoff in range(1000):
     shortest_cutoff = cutoff
 print(shortest_cutoff)
 
-def test_quicksort():
 
 #shortest_cutoff ranges from 10-20 
 
+#2 Solve the previous problem for a nonrecursive implementation
+# nonrecursive quicksort
 
-#non recursive quicksort
-
-def quicksortr(l, cutoff=10):
+def quicksortnr(l, cutoff=10):
   stack = [(0, len(l) - 1)]
   while stack:
       start, end = stack.pop()
@@ -94,3 +93,30 @@ def quicksortr(l, cutoff=10):
           if left < end:
               stack.append((left, end))
   return l
+
+def test_quicksortnr():
+  assert quicksortnr([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) == [1, 2, 2, 3, 3, 3, 4, 4, 5, 12, 23, 23]
+  assert quicksortnr([23,21,2,3,3,5,6,76,8,9,2]) == [2, 2, 3, 3, 5, 6, 8, 9, 21, 23, 76]
+  assert quicksortnr([5,4,3,2,1]) == [1, 2, 3, 4, 5]
+
+random_list = [random.randint(1, 100) for _ in range(1000)]
+
+shortest_time = None 
+for cutoff in range(1000):
+  rl = random_list.copy()
+  st = datetime.datetime.now()
+  quicksortnr(rl,cutoff)
+  et = datetime.datetime.now()
+  elapsed_time = et - st
+  print(cutoff,'- Execution time:', elapsed_time, 'seconds')
+  if shortest_time is None or elapsed_time < shortest_time:
+    shortest_time = elapsed_time
+    shortest_cutoff = cutoff
+print(shortest_cutoff)
+
+# shortest cutoff = 24
+
+#3 Solve the previous problem also incorporating the median-of-three improvement
+
+
+
