@@ -117,6 +117,16 @@ print(shortest_cutoff)
 # shortest cutoff = 24
 
 #3 Solve the previous problem also incorporating the median-of-three improvement
+# The median-of-three improvement is a method in which you take the first, middle, and last element of the list, and pick the median of the 
+# three values as the pivot point 
+# My code already uses this 
+
+#4
+#About how long will quicksort take to sort a file of N equal elements?
+#O(N)
+
+
+
 
 
 
