@@ -125,6 +125,43 @@ print(shortest_cutoff)
 #About how long will quicksort take to sort a file of N equal elements?
 #O(N)
 
+#5 What is the maximum number of times during the execution of quicksort that the largest element can be moved? 
+
+#6 Show how the file ABABABA is partitioned, using the two methods suggested in the text
+
+# How many comparisons does 
+'''
+EASYQUESTION (12)
+N
+
+1- EAEI (4)
+  I
+  1.1- EAE (3)
+  EE
+    1.11- A (2)
+    1.12- [](0)
+  1.2- [] (0)
+
+2- SYQUSTO (7)
+  O
+  2.1- [] (0)
+  2.2- SYQUST (6)
+    T
+    2.21- SQS (3)
+      SS
+      2.211- [](0)
+      2.212- Q (2)
+    2.22- YU (2)
+      U
+      2.221- [] (0)
+      2.222- Y (1)
+
+34 comparisons
+'''
+
+
+
+
 
 
 
