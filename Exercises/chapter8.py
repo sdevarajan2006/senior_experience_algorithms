@@ -129,7 +129,8 @@ print(shortest_cutoff)
 
 #6 Show how the file ABABABA is partitioned, using the two methods suggested in the text
 
-# How many comparisons does 
+
+# 7How many comparisons does Quicksort use to sort the keys EASYQUESTION? 
 '''
 EASYQUESTION (12)
 N
@@ -159,7 +160,14 @@ N
 34 comparisons
 '''
 
+#8 How many sentinel keys are needed if insertion sort is called directly from within quicksort 
+#1 sentinel key, which is the minimum value in the list. This can be placed at the beginning, getting rid of a check that we have reached the
+# beginning of the list during comparisons. 
 
+#9 Would it be reasonable to use a queue instead of a stack for a nonrecursive implementation of quicksort? Why or why not?
+#No, it would not. This is because the smallest portions of the arrays need to be sorted before we can group the larger sub-arrays together 
+
+#10 Write a program to rearrange a file so that all the elements with keys equal to the median are in place, with smaller elements to the left and larger elements to the right
 
 
 
