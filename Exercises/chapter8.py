@@ -169,6 +169,27 @@ N
 
 #10 Write a program to rearrange a file so that all the elements with keys equal to the median are in place, with smaller elements to the left and larger elements to the right
 
+def n10(list):
+  smalls = []
+  lgs = []
+  while list: 
+    if len(list) == 1:
+      return(smalls + [list[0]] + lgs)
+    minn = min(list)
+    maxn = max(list)
+    list.remove(minn)
+    list.remove(maxn)
+    smalls.append(minn)
+    lgs.append(maxn)
+  return(smalls + lgs)  
+
+def test_n10():
+  ex_1 = [4,3,5,6,2,1,7,8,9]
+  assert n10(ex_1) == [1, 2, 3, 4, 5, 9, 8, 7, 6]
+  ex_2 = [4,3,2,4,5,4,6,65,123,3,4,4,3,2,3,4,5,6,7,8,9,10,11,12,13]
+  assert n10(ex_2) == [2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 123, 65, 13, 12, 11, 10, 9, 8, 7, 6, 6, 5]
+  ex_3 = [0]
+  asser n10(ex_3) == [0]
 
 
 
