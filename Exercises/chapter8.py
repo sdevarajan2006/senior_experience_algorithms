@@ -128,7 +128,37 @@ print(shortest_cutoff)
 #5 What is the maximum number of times during the execution of quicksort that the largest element can be moved? 
 
 #6 Show how the file ABABABA is partitioned, using the two methods suggested in the text
+'''
+standard
+Partition 1:
+  comparison key: A
+  less than: [AAA]
+  Partition 1.1:
+    comparison key: A
+    less than: [AA]
+    Partition 1.11:
+      comparison key: A
+      less than: [A]
+      greater than: []
+    greater than: []
+  greater than: [BBB]
+  Partition 1.2:
+    comparison key: B
+    less than: [BB]
+    Partition 1.21:
+      comparison key: B
+      less than: [B]
+      greater than: []
+    greater than: []
+FINAL: [AAAABBB]
 
+median of three
+Partition 1:
+  comparison key = median[A,B,A] = A
+  less than: [AAA]
+  greater than: [BBB]
+  after this, the process is the same as the standard. 
+'''
 
 # 7How many comparisons does Quicksort use to sort the keys EASYQUESTION? 
 '''
