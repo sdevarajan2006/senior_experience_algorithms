@@ -127,6 +127,12 @@ print(shortest_cutoff)
 
 #5 What is the maximum number of times during the execution of quicksort that the largest element can be moved? 
 
+#The maximum number of times that the largest element can be moved is l-1, where l is the length of the list. 
+# This occurs when the list is sorted backward, with the first element as the largest, and always using the last element of the list as the one 
+# that partitions. 
+
+
+
 #6 Show how the file ABABABA is partitioned, using the two methods suggested in the text
 '''
 standard
